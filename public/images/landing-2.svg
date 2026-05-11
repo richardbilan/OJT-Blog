@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1f2937"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <filter id="n" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.25"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="600" height="900" fill="url(#g)"/>
+  <rect width="600" height="900" filter="url(#n)" opacity="0.65"/>
+  <rect x="90" y="110" width="420" height="680" rx="40" fill="#ffffff" opacity="0.08"/>
+  <path d="M120 720 C 220 630, 360 820, 480 680" fill="none" stroke="#f59e0b" stroke-width="10" opacity="0.8"/>
+</svg>
