@@ -1,11 +1,7 @@
 FROM richarvey/nginx-php-fpm:latest
 
-# install Node 22
-RUN apk add --no-cache curl \
-    && curl -fsSL https://unofficial-builds.nodejs.org/download/release/v22.12.0/node-v22.12.0-linux-x64-musl.tar.xz \
-    -o node.tar.xz \
-    && tar -xJf node.tar.xz -C /usr/local --strip-components=1 \
-    && rm node.tar.xz
+# install Node 22 (official Alpine package)
+RUN apk add --no-cache nodejs npm
 
 COPY . /var/www/html
 
