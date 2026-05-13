@@ -16,12 +16,20 @@
         <div class="landing__strip" aria-label="Landing cards">
             @foreach (($students ?? []) as $student)
                 @if (!in_array($student['track'] ?? '', ['Mentor', 'Senior Developer'], true))
-                    <a class="landing-card" href="{{ route('students.show', ['slug' => $student['slug']]) }}" style="--card-image: url('{{ asset($student['image']) }}');">
+                    @if ($student['has_pages'] ?? true)
+                        <a class="landing-card" href="{{ route('students.show', ['slug' => $student['slug']]) }}" style="--card-image: url('{{ asset($student['image']) }}');">
+                    @else
+                        <div class="landing-card landing-card--static" style="--card-image: url('{{ asset($student['image']) }}');">
+                    @endif
                         <div class="landing-card__overlay">
                             <div class="landing-card__tag">{{ $student['track'] }}</div>
                             <div class="landing-card__title">{{ $student['name'] }}</div>
                         </div>
-                    </a>
+                    @if ($student['has_pages'] ?? true)
+                        </a>
+                    @else
+                        </div>
+                    @endif
                 @endif
             @endforeach
         </div>

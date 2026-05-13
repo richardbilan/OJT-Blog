@@ -32,7 +32,9 @@
   
 
         $weeks = [];
-        for ($i = 1; $i <= 15; $i++) {
+        $availableWeeks = collect($availableWeeks ?? range(1, 15));
+
+        foreach ($availableWeeks as $i) {
             $p = $palette[($i - 1) % count($palette)];
             $weeks[] = [
                 'number' => $i,

@@ -27,6 +27,8 @@ COPY . /var/www/html
 
 WORKDIR /var/www/html
 
+COPY nginx-site.conf /etc/nginx/sites-enabled/default.conf
+
 RUN rm -f bootstrap/cache/*.php bootstrap/cache/*.tmp
 
 RUN composer install --no-dev --optimize-autoloader
@@ -35,7 +37,6 @@ COPY --from=assets /app/public/build /var/www/html/public/build
 
 RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache
 
-RUN php artisan route:cache
 RUN php artisan view:cache
 
 RUN chown -R www-data:www-data storage bootstrap/cache \
