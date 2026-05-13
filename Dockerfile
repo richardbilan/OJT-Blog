@@ -1,7 +1,14 @@
-FROM richarvey/nginx-php-fpm:latest
+FROM node:22-alpine AS assets
 
-# install Node 22 (official Alpine package)
-RUN apk add --no-cache nodejs npm
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+RUN npm run build
+
+FROM richarvey/nginx-php-fpm:latest
 
 COPY . /var/www/html
 
@@ -9,9 +16,7 @@ WORKDIR /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN rm -rf node_modules package-lock.json
-RUN npm install
-RUN npm run build
+COPY --from=assets /app/public/build /var/www/html/public/build
 
 RUN php artisan config:cache
 RUN php artisan route:cache
