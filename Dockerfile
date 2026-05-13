@@ -29,7 +29,7 @@ WORKDIR /var/www/html
 
 COPY nginx-site.conf /etc/nginx/sites-enabled/default.conf
 
-RUN rm -f bootstrap/cache/*.php bootstrap/cache/*.tmp
+RUN rm -f bootstrap/cache/*.php bootstrap/cache/*.tmp storage/framework/views/*.php
 
 RUN composer install --no-dev --optimize-autoloader
 
