@@ -12,6 +12,9 @@ FROM richarvey/nginx-php-fpm:latest
 
 ENV SKIP_COMPOSER=1
 ENV WEBROOT=/var/www/html/public
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+ENV APP_URL=https://richardbilanojt-blog.onrender.com
 ENV PHP_ERRORS_STDERR=1
 ENV LOG_CHANNEL=stderr
 ENV COMPOSER_ALLOW_SUPERUSER=1
