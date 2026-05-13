@@ -10,6 +10,12 @@ RUN npm run build
 
 FROM richarvey/nginx-php-fpm:latest
 
+ENV SKIP_COMPOSER=1
+ENV WEBROOT=/var/www/html/public
+ENV PHP_ERRORS_STDERR=1
+ENV LOG_CHANNEL=stderr
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 COPY . /var/www/html
 
 WORKDIR /var/www/html
