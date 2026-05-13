@@ -18,6 +18,9 @@ RUN composer install --no-dev --optimize-autoloader
 
 COPY --from=assets /app/public/build /var/www/html/public/build
 
+RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
